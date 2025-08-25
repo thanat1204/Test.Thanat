@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เมนูอาหาร</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 50px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .menu-container {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .menu-item {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            max-width: 350px;
+            text-align: center;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .food-image {
+            width: 100%;
+            height: 250px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            object-fit: cover;
+        }
+
+        .food-image:hover {
+            transform: scale(1.05);
+        }
+
+        .food-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .food-description {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .food-price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        @media (max-width: 768px) {
+            .menu-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🍽️ เมนูอาหารแนะนำ</h1>
+        
+        <div class="menu-container">
+            <div class="menu-item">
+                <img class="food-image" 
+                     src="สปาเก็ตตี้.jpg" 
+                     alt="สปาเก็ตตี้" 
+                     onerror="this.src=''; this.alt='รูปภาพไม่สามารถโหลดได้'; this.style.display='none';">
+                <div class="food-name">สปาเก็ตตี้</div>
+                <div class="food-description">เส้นสปาเก็ตตี้อัลเดนเต้ ราดด้วยซอสมะเขือเทศ เนื้อสับ และชีสพาร์เมซาน</div>
+                <div class="food-price">180 บาท</div>
+            </div>
+
+            <div class="menu-item">
+                <img class="food-image" 
+                     src="สลัดผัก.jpg" 
+                     alt="สลัดผัก" 
+                     onerror="this.src=''; this.alt='รูปภาพไม่สามารถโหลดได้'; this.style.display='none';">
+                <div class="food-name">สลัดผัก</div>
+                <div class="food-description">ผักสดหลากหลายชนิด มะเขือเทศเชอร์รี่ แครอท แตงกวา พร้อมน้ำสลัดโฮมเมด</div>
+                <div class="food-price">120 บาท</div>
+            </div>
+
+            <div class="menu-item">
+                <img class="food-image" 
+                     src="ข้าวมันไก่.webp" 
+                     alt="ข้าวมันไก่" 
+                     onerror="this.src=''; this.alt='รูปภาพไม่สามารถโหลดได้'; this.style.display='none';">
+                <div class="food-name">ข้าวมันไก่</div>
+                <div class="food-description">ข้าวมันหอมมัน เนื้อไก่นุ่ม ผักชีสด แตงกวา พร้อมน้ำจิ้มรสเด็ด</div>
+                <div class="food-price">100 บาท</div>
+            </div>
+        </div>
+    </div>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9748750495f47334',t:'MTc1NjA5NzMwNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

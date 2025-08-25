@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เปลี่ยนสีพื้นหลัง</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap');
+        body {
+            font-family: 'Kanit', sans-serif;
+            transition: background-color 0.5s ease;
+        }
+        
+        .color-button {
+            transition: all 0.3s ease;
+            transform: scale(1);
+        }
+        
+        .color-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .color-button:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center p-4">
+    <div class="bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl p-8 w-full max-w-lg text-center">
+        <div class="mb-8">
+            <h1 class="text-4xl font-600 text-gray-800 mb-4">เปลี่ยนสีพื้นหลัง</h1>
+            <p class="text-gray-600 text-lg">คลิกปุ่มเพื่อเปลี่ยนสีพื้นหลังของหน้าเว็บ</p>
+        </div>
+
+        <div class="space-y-4 mb-8">
+            <!-- ปุ่มสีแดง -->
+            <button 
+                id="redButton"
+                class="color-button w-full bg-red-500 hover:bg-red-600 text-white font-500 py-4 px-8 rounded-xl text-xl shadow-lg"
+            >
+                🔴 แดง
+            </button>
+
+            <!-- ปุ่มสีเขียว -->
+            <button 
+                id="greenButton"
+                class="color-button w-full bg-green-500 hover:bg-green-600 text-white font-500 py-4 px-8 rounded-xl text-xl shadow-lg"
+            >
+                🟢 เขียว
+            </button>
+
+            <!-- ปุ่มสีน้ำเงิน -->
+            <button 
+                id="blueButton"
+                class="color-button w-full bg-blue-500 hover:bg-blue-600 text-white font-500 py-4 px-8 rounded-xl text-xl shadow-lg"
+            >
+                🔵 น้ำเงิน
+            </button>
+        </div>
+
+        <!-- ปุ่มรีเซ็ต -->
+        <button 
+            id="resetButton"
+            class="color-button bg-gray-500 hover:bg-gray-600 text-white font-500 py-3 px-6 rounded-lg text-lg shadow-md"
+        >
+            🔄 รีเซ็ต
+        </button>
+
+        <!-- แสดงสีปัจจุบัน -->
+        <div class="mt-6 p-4 bg-gray-50 rounded-lg">
+            <p class="text-gray-600 text-sm mb-1">สีพื้นหลังปัจจุบัน:</p>
+            <p id="currentColor" class="text-lg font-500 text-gray-800">เทา (ค่าเริ่มต้น)</p>
+        </div>
+    </div>
+
+    <script>
+        // รับ reference ของ body และ element ต่างๆ
+        const body = document.body;
+        const redButton = document.getElementById('redButton');
+        const greenButton = document.getElementById('greenButton');
+        const blueButton = document.getElementById('blueButton');
+        const resetButton = document.getElementById('resetButton');
+        const currentColorText = document.getElementById('currentColor');
+
+        // ฟังก์ชันอัพเดทข้อความสีปัจจุบัน
+        function updateCurrentColorText(colorName) {
+            currentColorText.textContent = colorName;
+        }
+
+        // เพิ่ม Event Listener สำหรับปุ่มสีแดง
+        redButton.addEventListener('click', function() {
+            body.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
+            updateCurrentColorText('แดง 🔴');
+            
+            // เอฟเฟกต์พิเศษ
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 150);
+        });
+
+        // เพิ่ม Event Listener สำหรับปุ่มสีเขียว
+        greenButton.addEventListener('click', function() {
+            body.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
+            updateCurrentColorText('เขียว 🟢');
+            
+            // เอฟเฟกต์พิเศษ
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 150);
+        });
+
+        // เพิ่ม Event Listener สำหรับปุ่มสีน้ำเงิน
+        blueButton.addEventListener('click', function() {
+            body.style.background = 'linear-gradient(135deg, #3b82f6, #2563eb)';
+            updateCurrentColorText('น้ำเงิน 🔵');
+            
+            // เอฟเฟกต์พิเศษ
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 150);
+        });
+
+        // เพิ่ม Event Listener สำหรับปุ่มรีเซ็ต
+        resetButton.addEventListener('click', function() {
+            body.style.background = 'linear-gradient(135deg, #f3f4f6, #e5e7eb)';
+            updateCurrentColorText('เทา (ค่าเริ่มต้น) ⚪');
+            
+            // เอฟเฟกต์พิเศษ
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 150);
+        });
+
+        // เพิ่มเอฟเฟกต์เสียงเมื่อคลิก (จำลอง)
+        const allButtons = document.querySelectorAll('.color-button');
+        allButtons.forEach(button => {
+            button.addEventListener('mousedown', function() {
+                // สร้างเอฟเฟกต์ ripple
+                const ripple = document.createElement('div');
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(255,255,255,0.6)';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s linear';
+                ripple.style.left = '50%';
+                ripple.style.top = '50%';
+                ripple.style.width = '20px';
+                ripple.style.height = '20px';
+                ripple.style.marginLeft = '-10px';
+                ripple.style.marginTop = '-10px';
+                
+                this.style.position = 'relative';
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // เพิ่ม CSS animation สำหรับ ripple effect
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // เพิ่มการตอบสนองต่อการกดปุ่มคีย์บอร์ด
+        document.addEventListener('keydown', function(event) {
+            switch(event.key) {
+                case '1':
+                    redButton.click();
+                    break;
+                case '2':
+                    greenButton.click();
+                    break;
+                case '3':
+                    blueButton.click();
+                    break;
+                case 'r':
+                case 'R':
+                    resetButton.click();
+                    break;
+            }
+        });
+
+        // แสดงคำแนะนำการใช้คีย์บอร์ด
+        const keyboardHint = document.createElement('div');
+        keyboardHint.className = 'fixed bottom-4 right-4 bg-black/70 text-white p-3 rounded-lg text-sm';
+        keyboardHint.innerHTML = `
+            <div class="text-center">
+                <p class="font-500 mb-1">⌨️ ทางลัด</p>
+                <p>1=แดง, 2=เขียว, 3=น้ำเงิน, R=รีเซ็ต</p>
+            </div>
+        `;
+        document.body.appendChild(keyboardHint);
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97485f2a746e7325',t:'MTc1NjA5NjQxMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

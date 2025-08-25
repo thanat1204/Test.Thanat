@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เครื่องคิดเลขบวกเลข</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap');
+        body {
+            font-family: 'Kanit', sans-serif;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-600 text-gray-800 mb-2">🧮 เครื่องคิดเลข</h1>
+            <p class="text-gray-600">บวกเลข 2 จำนวน</p>
+        </div>
+
+        <div class="space-y-6">
+            <!-- ช่องกรอกตัวเลขที่ 1 -->
+            <div>
+                <label for="number1" class="block text-sm font-500 text-gray-700 mb-2">
+                    ตัวเลขที่ 1
+                </label>
+                <input 
+                    type="number" 
+                    id="number1" 
+                    placeholder="กรอกตัวเลขที่ 1"
+                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors text-lg text-center"
+                >
+            </div>
+
+            <!-- เครื่องหมายบวก -->
+            <div class="text-center">
+                <span class="inline-flex items-center justify-center w-12 h-12 bg-blue-100 text-blue-600 rounded-full text-2xl font-600">+</span>
+            </div>
+
+            <!-- ช่องกรอกตัวเลขที่ 2 -->
+            <div>
+                <label for="number2" class="block text-sm font-500 text-gray-700 mb-2">
+                    ตัวเลขที่ 2
+                </label>
+                <input 
+                    type="number" 
+                    id="number2" 
+                    placeholder="กรอกตัวเลขที่ 2"
+                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors text-lg text-center"
+                >
+            </div>
+
+            <!-- ปุ่มคำนวณ -->
+            <button 
+                onclick="calculateSum()"
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-500 py-3 px-6 rounded-lg transition-colors duration-200 text-lg shadow-md hover:shadow-lg"
+            >
+                🔢 คำนวณ
+            </button>
+
+            <!-- แสดงผลลัพธ์ -->
+            <div id="result" class="hidden">
+                <div class="bg-green-50 border-2 border-green-200 rounded-lg p-4 text-center">
+                    <p class="text-sm text-green-600 mb-1">ผลลัพธ์</p>
+                    <p class="text-2xl font-600 text-green-800" id="resultValue">0</p>
+                </div>
+            </div>
+
+            <!-- ข้อความแสดงข้อผิดพลาด -->
+            <div id="error" class="hidden">
+                <div class="bg-red-50 border-2 border-red-200 rounded-lg p-4 text-center">
+                    <p class="text-red-600">⚠️ กรุณากรอกตัวเลขในทั้งสองช่อง</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ปุ่มล้างข้อมูล -->
+        <div class="mt-6 text-center">
+            <button 
+                onclick="clearAll()"
+                class="text-gray-500 hover:text-gray-700 underline text-sm transition-colors"
+            >
+                ล้างข้อมูลทั้งหมด
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function calculateSum() {
+            // รับค่าจากช่อง input
+            const number1 = document.getElementById('number1').value;
+            const number2 = document.getElementById('number2').value;
+            
+            // ซ่อนข้อความแสดงข้อผิดพลาดและผลลัพธ์เก่า
+            document.getElementById('error').classList.add('hidden');
+            document.getElementById('result').classList.add('hidden');
+            
+            // ตรวจสอบว่ากรอกข้อมูลครบหรือไม่
+            if (number1 === '' || number2 === '') {
+                document.getElementById('error').classList.remove('hidden');
+                return;
+            }
+            
+            // แปลงเป็นตัวเลขและคำนวณ
+            const num1 = parseFloat(number1);
+            const num2 = parseFloat(number2);
+            const sum = num1 + num2;
+            
+            // แสดงผลลัพธ์
+            document.getElementById('resultValue').textContent = sum.toLocaleString('th-TH');
+            document.getElementById('result').classList.remove('hidden');
+        }
+        
+        function clearAll() {
+            // ล้างข้อมูลในช่อง input
+            document.getElementById('number1').value = '';
+            document.getElementById('number2').value = '';
+            
+            // ซ่อนผลลัพธ์และข้อความแสดงข้อผิดพลาด
+            document.getElementById('result').classList.add('hidden');
+            document.getElementById('error').classList.add('hidden');
+            
+            // โฟกัสที่ช่องแรก
+            document.getElementById('number1').focus();
+        }
+        
+        // ให้สามารถกด Enter เพื่อคำนวณได้
+        document.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                calculateSum();
+            }
+        });
+        
+        // โฟกัสที่ช่องแรกเมื่อโหลดหน้า
+        window.onload = function() {
+            document.getElementById('number1').focus();
+        };
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'974858f2a1617335',t:'MTc1NjA5NjE1Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
